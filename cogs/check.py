@@ -4,7 +4,6 @@ import requests
 from data import *
 from discord.ext import commands
 
-#ког, содержащий команду !check (Чек лучшего рана на этой неделе)
 class Check(commands.Cog):
 
     def __init__(self, client):

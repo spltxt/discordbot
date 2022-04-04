@@ -25,11 +25,8 @@ class Recent(commands.Cog):
         jsond = requests.get('https://raider.io/api/v1/characters/profile', params=params)
 
         if jsond.status_code != 200:
-            print("Персонаж не найден.")
-
-        # with open('log.txt', 'a', encoding='utf-8') as log:
-        #     log.write(f'{time.asctime()} - {ctx.author} произвел чек 10 последних ранов персонажа {char_name} {server_name}\n')
-        #     log.close()
+            embed = discord.Embed(title=f'Персонаж {char_name} на сервере {server_name} не найден.', color=discord.Colour.red())
+            await ctx.send(embed=embed)
 
         jsondata = jsond.json()
         try:

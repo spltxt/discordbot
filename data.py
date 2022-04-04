@@ -28,7 +28,7 @@ realms = {
     'сд': 'soulflayer', 'ял': 'ashenvale', 'kz': 'kazzak', 'bl': 'burning-legion',
     'sg': 'sanguino', 'бт': 'borean-tundra', 'bt': 'borean-tundra', 'ss': 'stormscale',
     'tn': 'twisting-nether', 'hj': 'hyjal', 'br': 'blackrock', 'dr': 'draenor',
-    'tm': 'tarren-mill', 'гд': 'gordunni'
+    'tm': 'tarren-mill', 'гд': 'gordunni', 'dt': "drak-thul"
 }
 female = {'Blood Elf': 'Эльфийка крови', 'Orc': 'Орчиха', 'Undead': 'Нежить',
           'Tauren': 'Тауренка', 'Troll': 'Тролль', 'Goblin': 'Гоблин',
@@ -53,4 +53,4 @@ male = {'Blood Elf': 'Эльф крови', 'Orc': 'Орк', 'Undead': 'Нежи
 realmsru = {
     'Howling Fjord': 'Ревущий Фьорд', 'Soulflayer': 'Свежеватель Душ', 'Borean Tundra': 'Борейская Тундра'
 }
-TOKEN = ''
+TOKEN = 'OTEzMzEzOTU2Njk5OTgzOTUz.YZ8r5w.OaG24M5El9qgs7Kk4ikIXFvFbf4'

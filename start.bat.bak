@@ -1,0 +1,5 @@
+chcp 65001
+@echo off
+CALL C:\Users\Анатолий\Desktop\9.2 discord bot\discordbot\venv\Scripts\activate.bat
+C:\Users\Анатолий\Desktop\9.2 discord bot\discordbot\venv\Scripts\python.exe "C:\Users\Анатолий\Desktop\9.2 discord bot\discordbot\bot.py"
+pause

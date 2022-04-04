@@ -42,6 +42,7 @@ class Rio(commands.Cog):
             pic = jsondata['thumbnail_url']
         except KeyError:
             return
+            
         # async with aiohttp.ClientSession() as session:
         #     async with session.get(pic) as resp:
         #         if resp.status != 200:
@@ -49,18 +50,35 @@ class Rio(commands.Cog):
         #         data = io.BytesIO(await resp.read())
         #         await ctx.send(file=discord.File(data, 'char_thumbnail.png'))
 
-        progress = jsondata['raid_progression']['sanctum-of-domination']['mythic_bosses_killed']
+        mythicprogress = jsondata['raid_progression']['sepulcher-of-the-first-ones']['mythic_bosses_killed']
+        heroicprogress = jsondata['raid_progression']['sepulcher-of-the-first-ones']['heroic_bosses_killed']
+
         realm = jsondata['realm']
         if realm in realmsru:
             realm = realmsru[realm]
+
         cclass = classes[jsondata['class']]
+
         mscore = int(jsondata['mythic_plus_scores_by_season'][0]['scores']['all'])
+
         gear = jsondata['gear']['item_level_equipped']
+
         gender = jsondata['gender']
         if gender == 'female':
             race = female[jsondata['race']]
         else:
             race = male[jsondata['race']]
+
+        setpieces = 0
+        for i in ('head', 'shoulder', 'chest', 'legs', 'hands'):
+            try:
+                if jsondata['gear']['items'][i]['tier'] == 28:
+                    setpieces += 1
+                else:
+                    continue
+            except KeyError:
+                continue
+
         trink1_name = jsondata['gear']['items']['trinket1']['name']
         if trink1_name in trinkets:
             trink1_name = trinkets[trink1_name]
@@ -69,17 +87,22 @@ class Rio(commands.Cog):
             trink2_name = trinkets[trink2_name]
         trink1_ilvl = jsondata['gear']['items']['trinket1']['item_level']
         trink2_ilvl = jsondata['gear']['items']['trinket2']['item_level']
+
         covenant_name = jsondata['covenant']['name']
         renown = jsondata['covenant']['renown_level']
         if covenant_name in covenants:
             covenant_name = covenants[covenant_name]
+
         spec = specs[jsondata['active_spec_name']]
+
+        
         if jsondata['guild'] == None:
             embed = discord.Embed(title=f'{char_name} - {realm} - [{mscore}]\n\n{race} - {cclass} специализации {spec}\n', color= discord.Colour.random())
-            embed.add_field(name=f'<Нет гильдии>\nSoD - {progress}/10M' , value=f'\u200b', inline=True)
+            embed.add_field(name=f'<Нет гильдии>\nSFO - {mythicprogress}/11M\n        {heroicprogress}/11HC', value=f'\u200b', inline=True)
             embed.add_field(name=f'Ковенант - {covenant_name}', value=f'Уровень известности - {renown}', inline=True)
             embed.add_field(name=f'Уровень предметов', value=f'{gear}')
             embed.add_field(name=f'Тринкеты', value=f'{trink1_name} {trink1_ilvl}\n{trink2_name} {trink2_ilvl}', inline=True)
+            embed.add_field(name=f'Сетовых предметов - {setpieces}', value=f'\u200b')
             embed.set_thumbnail(url = pic)
             # embed.set_footer(icon_url=ctx.author.avatar_url, text = f'Requested by {ctx.author.name}')
             await ctx.send(embed=embed)
@@ -87,10 +110,11 @@ class Rio(commands.Cog):
         else:
             guild = jsondata['guild']['name']
             embed = discord.Embed(title=f'{char_name} - {realm} - [{mscore}]\n\n{race} - {cclass} специализации {spec}\n', color= discord.Colour.random())
-            embed.add_field(name=f'<{guild}>\nSoD - {progress}/10M' , value='\u200b', inline=True)
+            embed.add_field(name=f'<{guild}>\nSFO - {mythicprogress}/11M\n        {heroicprogress}/11HC', value='\u200b', inline=True)
             embed.add_field(name=f'Ковенант - {covenant_name}', value=f'Уровень известности - {renown}', inline=True)
             embed.add_field(name=f'Уровень предметов', value=f'{gear}')
             embed.add_field(name=f'Тринкеты', value=f'{trink1_name} {trink1_ilvl}\n{trink2_name} {trink2_ilvl}', inline=True)
+            embed.add_field(name=f'Сетовых предметов - {setpieces}', value=f'\u200b')
             embed.set_thumbnail(url = pic)
             # embed.set_footer(icon_url=ctx.author.avatar_url, text = f'Requested by {ctx.author.name}')
             await ctx.send(embed=embed)

@@ -36,7 +36,7 @@ class Utils(commands.Cog):
 Сокращения серверов:
 сд - Свежеватель, гд - Гордунни, бт - Борейская Тундра, ял - Ясеневый Лес
 tm - Tarren Mill, sg - Sanguino, kz - Kazzak, tn - Twisting Nether, hj - Hyjal,
-br - Blackrock, dr - Draenor, bl - Burning Legion, ss - Stormscale
+br - Blackrock, dr - Draenor, bl - Burning Legion, ss - Stormscale, dt - Drak'thul
 ''')
 
     @commands.command()
@@ -47,7 +47,7 @@ br - Blackrock, dr - Draenor, bl - Burning Legion, ss - Stormscale
         embed.add_field(name='!r или !recent', value=' [Имя персонажа] [Сервер] - Чек последних 10 ранов персонажа.', inline=True)
         embed.add_field(name='Сокращения серверов:', value='''сд - Свежеватель, гд - Гордунни, бт - Борейская Тундра, ял - Ясеневый Лес
 tm - Tarren Mill, sg - Sanguino, kz - Kazzak, tn - Twisting Nether, hj - Hyjal,
-br - Blackrock, dr - Draenor, bl - Burning Legion, ss - Stormscale.''')
+br - Blackrock, dr - Draenor, bl - Burning Legion, ss - Stormscale, dt - Drak'thul.''')
         await ctx.send(embed=embed)
 
 def setup(client):
